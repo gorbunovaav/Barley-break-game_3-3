@@ -107,15 +107,17 @@ window.onload = function () {
     let y = (e.pageY - canvas.offsetTop)  / cellSize | 0;
     onEvent(x, y); 
   };
-
   function onEvent(x, y) {
     game.move(x, y);
     context.fillRect(0, 0, canvas.width, canvas.height);
     game.draw();
     if (game.victory()) {
-      alert("Собрано за " + game.getClicks() + " касание!");
+      setTimeout(function(){
+        alert("Собрано за " + game.getClicks() + " касание!");
       context.fillRect(0, 0, canvas.width, canvas.height);
       game.draw(context, cellSize);
+      }, 500)
+      
     }
   }
 };
